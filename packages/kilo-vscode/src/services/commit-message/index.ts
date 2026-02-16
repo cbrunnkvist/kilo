@@ -1,5 +1,6 @@
 import * as vscode from "vscode"
 import type { KiloConnectionService } from "../cli-backend/connection-service"
+import type { HttpClient } from "../cli-backend/http-client"
 
 let lastGeneratedMessage: string | undefined
 let lastWorkspacePath: string | undefined
@@ -41,9 +42,11 @@ export function registerCommitMessageService(
       return
     }
 
-    const client = connectionService.getHttpClient()
-    if (!client) {
-      vscode.window.showErrorMessage("Kilo backend is not connected")
+    let client: HttpClient | undefined
+    try {
+      client = connectionService.getHttpClient()
+    } catch {
+      vscode.window.showErrorMessage("Kilo backend is not connected. Please wait for the connection to establish.")
       return
     }
 
