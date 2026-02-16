@@ -1,26 +1,124 @@
 import type { GitContext, FileChange } from "./types"
 
 const LOCK_FILES = new Set([
+  // --- JavaScript / Node.js ---
   "package-lock.json",
+  "npm-shrinkwrap.json",
   "yarn.lock",
   "pnpm-lock.yaml",
-  "Cargo.lock",
-  "poetry.lock",
-  "composer.lock",
-  "Gemfile.lock",
-  "go.sum",
+  "shrinkwrap.yaml",
   "bun.lockb",
   "bun.lock",
-  "uv.lock",
+  ".pnp.js",
+  ".pnp.cjs",
+  "jspm.lock",
+
+  // --- Python ---
   "Pipfile.lock",
-  "flake.lock",
+  "poetry.lock",
+  "pdm.lock",
+  ".pdm-lock.toml",
+  "uv.lock",
+  "conda-lock.yml",
+  "pylock.toml",
+
+  // --- Ruby ---
+  "Gemfile.lock",
+
+  // --- PHP ---
+  "composer.lock",
+
+  // --- Java / JVM ---
+  "gradle.lockfile",
+  "lockfile.json",
+  "dependency-lock.json",
+  "dependency-reduced-pom.xml",
+  "coursier.lock",
+
+  // --- Scala ---
+  "build.sbt.lock",
+
+  // --- .NET ---
   "packages.lock.json",
-  "project.assets.json",
   "paket.lock",
-  "pubspec.lock",
+  "project.assets.json",
+
+  // --- Rust ---
+  "Cargo.lock",
+
+  // --- Go ---
+  "go.sum",
+  "Gopkg.lock",
+  "glide.lock",
+
+  // --- Zig ---
+  "build.zig.zon.lock",
+
+  // --- OCaml ---
+  "dune.lock",
+  "opam.lock",
+
+  // --- Swift / iOS ---
   "Package.resolved",
   "Podfile.lock",
-  "shrinkwrap.yaml",
+  "Cartfile.resolved",
+
+  // --- Dart / Flutter ---
+  "pubspec.lock",
+
+  // --- Elixir / Erlang ---
+  "mix.lock",
+  "rebar.lock",
+
+  // --- Haskell ---
+  "stack.yaml.lock",
+  "cabal.project.freeze",
+
+  // --- Elm ---
+  "exact-dependencies.json",
+
+  // --- Crystal ---
+  "shard.lock",
+
+  // --- Julia ---
+  "Manifest.toml",
+  "JuliaManifest.toml",
+
+  // --- R ---
+  "renv.lock",
+  "packrat.lock",
+
+  // --- Nim ---
+  "nimble.lock",
+
+  // --- D ---
+  "dub.selections.json",
+
+  // --- Lua ---
+  "rocks.lock",
+
+  // --- Perl ---
+  "carton.lock",
+  "cpanfile.snapshot",
+
+  // --- C/C++ ---
+  "conan.lock",
+  "vcpkg-lock.json",
+
+  // --- Infrastructure as Code ---
+  ".terraform.lock.hcl",
+  "Berksfile.lock",
+  "Puppetfile.lock",
+  "MODULE.bazel.lock",
+
+  // --- Nix ---
+  "flake.lock",
+
+  // --- Deno ---
+  "deno.lock",
+
+  // --- DevContainers ---
+  "devcontainer.lock.json",
 ])
 
 const MAX_DIFF_LENGTH = 4000
