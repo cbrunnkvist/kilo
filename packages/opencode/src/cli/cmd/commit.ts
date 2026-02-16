@@ -14,11 +14,7 @@ export const CommitCommand = cmd({
         type: "boolean",
         default: false,
       })
-      .option("staged-only", {
-        describe: "only use staged changes",
-        type: "boolean",
-        default: true,
-      })
+
   },
   handler: async (args) => {
     await bootstrap(process.cwd(), async () => {
