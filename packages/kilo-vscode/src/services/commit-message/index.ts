@@ -29,6 +29,10 @@ export function registerCommitMessageService(
       return
     }
 
+    if (!extension.isActive) {
+      await extension.activate()
+    }
+
     const git = extension.exports?.getAPI(1)
     const repository = git?.repositories[0]
     if (!repository) {
