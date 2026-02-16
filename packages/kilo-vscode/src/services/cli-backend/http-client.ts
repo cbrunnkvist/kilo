@@ -470,6 +470,18 @@ export class HttpClient {
   }
 
   // ============================================
+  // Commit Message Methods
+  // ============================================
+
+  /**
+   * Generate a commit message for the current diff in the given directory.
+   */
+  async generateCommitMessage(path: string, selectedFiles?: string[]): Promise<string> {
+    const result = await this.request<{ message: string }>("POST", "/commit-message", { path, selectedFiles })
+    return result.message
+  }
+
+  // ============================================
   // MCP Methods
   // ============================================
 
