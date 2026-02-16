@@ -141,7 +141,14 @@ function parseNameStatus(output: string): Array<{ status: string; path: string }
   if (!output) return []
   return output.split("\n").map((line) => {
     const [status, ...rest] = line.split("\t")
-    return { status: status!, path: rest.join("\t") }
+    let path: string
+    if (status!.startsWith("R")) {
+      // Rename: rest = ["old.ts", "new.ts"], use the new path
+      path = rest[1] ?? rest[0]
+    } else {
+      path = rest.join("\t")
+    }
+    return { status: status!, path }
   })
 }
 
