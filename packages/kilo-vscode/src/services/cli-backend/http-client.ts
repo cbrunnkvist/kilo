@@ -23,8 +23,8 @@ export class HttpClient {
 
   constructor(config: ServerConfig) {
     this.baseUrl = config.baseUrl
-    // Auth header format: Basic base64("opencode:password")
-    // NOTE: The CLI server expects a non-empty username ("opencode"). Using an empty username
+    // Auth header format: Basic base64("kilo:password")
+    // NOTE: The CLI server expects a non-empty username ("kilo"). Using an empty username
     // (":password") results in 401 for both REST and SSE endpoints.
     this.authHeader = `Basic ${Buffer.from(`${this.authUsername}:${config.password}`).toString("base64")}`
 
