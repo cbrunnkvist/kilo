@@ -476,8 +476,12 @@ export class HttpClient {
   /**
    * Generate a commit message for the current diff in the given directory.
    */
-  async generateCommitMessage(path: string, selectedFiles?: string[]): Promise<string> {
-    const result = await this.request<{ message: string }>("POST", "/commit-message", { path, selectedFiles })
+  async generateCommitMessage(path: string, selectedFiles?: string[], previousMessage?: string): Promise<string> {
+    const result = await this.request<{ message: string }>("POST", "/commit-message", {
+      path,
+      selectedFiles,
+      previousMessage,
+    })
     return result.message
   }
 

@@ -136,6 +136,11 @@ export async function generateCommitMessage(request: CommitMessageRequest): Prom
     temperature: 0.3,
   }
 
+  let userMessage = buildUserMessage(ctx)
+  if (request.previousMessage) {
+    userMessage = `IMPORTANT: Generate a COMPLETELY DIFFERENT commit message from the previous one. The previous message was: "${request.previousMessage}". Use a different type, scope, or description approach.\n\n${userMessage}`
+  }
+
   const stream = await LLM.stream({
     agent,
     user: {
@@ -157,7 +162,7 @@ export async function generateCommitMessage(request: CommitMessageRequest): Prom
     messages: [
       {
         role: "user" as const,
-        content: buildUserMessage(ctx),
+        content: userMessage,
       },
     ],
     abort: new AbortController().signal,

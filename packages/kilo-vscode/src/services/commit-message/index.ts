@@ -1,6 +1,9 @@
 import * as vscode from "vscode"
 import type { KiloConnectionService } from "../cli-backend/connection-service"
 
+let lastGeneratedMessage: string | undefined
+let lastWorkspacePath: string | undefined
+
 interface GitRepository {
   inputBox: { value: string }
   rootUri: vscode.Uri
@@ -46,12 +49,16 @@ export function registerCommitMessageService(
 
     const path = folder.uri.fsPath
 
+    const previousMessage = lastWorkspacePath === path ? lastGeneratedMessage : undefined
+
     await vscode.window
       .withProgress(
         { location: vscode.ProgressLocation.SourceControl, title: "Generating commit message..." },
         async () => {
-          const message = await client.generateCommitMessage(path)
+          const message = await client.generateCommitMessage(path, undefined, previousMessage)
           repository.inputBox.value = message
+          lastGeneratedMessage = message
+          lastWorkspacePath = path
           console.log("[Kilo New] Commit message generated successfully")
         },
       )

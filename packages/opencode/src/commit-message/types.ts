@@ -3,6 +3,8 @@ export interface CommitMessageRequest {
   path: string
   /** Optional subset of files to include */
   selectedFiles?: string[]
+  /** Previously generated message — when set, the LLM is asked to produce a different one */
+  previousMessage?: string
 }
 
 export interface CommitMessageResponse {

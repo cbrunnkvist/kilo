@@ -29,6 +29,10 @@ export const CommitMessageRoutes = lazy(() =>
       z.object({
         path: z.string().meta({ description: "Workspace/repo path" }),
         selectedFiles: z.array(z.string()).optional().meta({ description: "Optional subset of files to include" }),
+        previousMessage: z
+          .string()
+          .optional()
+          .meta({ description: "Previously generated message — triggers regeneration with a different result" }),
       }),
     ),
     async (c) => {
