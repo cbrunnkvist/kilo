@@ -1,8 +1,9 @@
 import { describe, expect, test, mock, beforeEach } from "bun:test"
+import type { GitContext } from "../types"
 
 // Mock dependencies before importing the module under test
 
-let mockGitContext = {
+let mockGitContext: GitContext = {
   branch: "main",
   recentCommits: ["abc1234 initial commit"],
   files: [
