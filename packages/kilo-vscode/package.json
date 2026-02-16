@@ -95,7 +95,10 @@
         "command": "kilo-code.new.generateCommitMessage",
         "title": "Generate Commit Message",
         "category": "Kilo Code (NEW)",
-        "icon": "$(sparkle)"
+        "icon": {
+          "light": "assets/icons/kilo-light.svg",
+          "dark": "assets/icons/kilo-dark.svg"
+        }
       }
     ],
     "keybindings": [
